@@ -31,3 +31,14 @@ async function gettingdata(URL){
 
 gettingdata(URL1)
 
+function yay(attunement,et){
+  et.addEventListener("click", function(event){
+       event.preventDefault()
+       let htmlelements = ""
+       let x = deepwoken.filter((something)=>something.attunement===`${attunement}`);
+       x.forEach((sm)=>htmlelements+=`<div id="card"> <p>${sm.name}</p> <img src=${sm.img}><p>${sm.type}</p> <p> ${sm.stars}★</div>`)
+       DOMselectors.container.innerHTML = htmlelements
+       
+   });
+}
+
