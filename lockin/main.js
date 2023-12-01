@@ -8,20 +8,20 @@ document.querySelector('#app').innerHTML = `
 `
 
 
-const URL1 = `https://www.cheapshark.com/api/1.0/games`;
+const URL1 = `https://www.cheapshark.com/api/1.0/games?title=God`;
 
-for(let i=0; i=50;i++){
-  const URL1 = `https://www.cheapshark.com/api/1.0/games?id=${i}`;
-  const response = await fetch(URL1)
-  console.log(response)
-}
+
+
+
 
 
 
 async function gettingdata(URL){
   try{
     const response = await fetch(URL);
-    console.log(response)
+    const data = await response.json();
+    console.log(data)
+    
 
   }
   catch{
@@ -30,5 +30,4 @@ async function gettingdata(URL){
 }
 
 gettingdata(URL1)
-
 
