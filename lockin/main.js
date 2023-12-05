@@ -7,11 +7,11 @@ document.querySelector('#app').innerHTML = `
 <button id="gamelookup">Game Lookup </button>
 <div id="container">
   <form action=""id="forum">
-  <p id="text">this text</p>
-  <button type="button" id="btn">click when done with forms</button>
-  <input type="text" id="input">
-  <label for="text">Attunement</label>
-  </form>
+    <input type="text" id="input">
+    <label for="text">What game do you wish to search for?</label>
+    </form>
+
+  
   
 
   
@@ -19,7 +19,8 @@ document.querySelector('#app').innerHTML = `
 
 let Domselectors = {
   glup:document.querySelector("#gamelookup"),
-  container:document.querySelector("#container")
+  container:document.querySelector("#container"),
+  gamelookupform:document.querySelector("#input"),
 }
 
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
@@ -28,7 +29,7 @@ const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
 
 Domselectors.glup.addEventListener("click",async function(){
   try{
-    let URL = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
+    let URL = `https://www.cheapshark.com/api/1.0/games?title=${Domselectors.gamelookupform.value}`;
     let fetching = await fetch(URL);
     let RealUrl = await fetching.json();
     let htmlelements = ""
@@ -40,7 +41,7 @@ Domselectors.glup.addEventListener("click",async function(){
               <p>Hover Me</p>
           </div>
           <div class="flip-card-back">
-              <p class="title">BACK</p>
+              <p class="title">${sm.cheapest}</p>
               <p>Leave Me</p>
           </div>
       </div>
@@ -49,6 +50,8 @@ Domselectors.glup.addEventListener("click",async function(){
     
     
     `
+    
+    
     
     
     )
