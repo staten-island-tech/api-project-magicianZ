@@ -52,3 +52,10 @@
   color: white;
   transform: rotateY(180deg);
 }
+
+#container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  
+}
