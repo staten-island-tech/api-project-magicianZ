@@ -38,7 +38,7 @@ Domselectors.glup.addEventListener("click",async function(){
       <div class="flip-card-inner">
           <div class="flip-card-front">
               <p class="title">${sm.external}</p>
-              <p>Hover Me</p>
+              <img src=${sm.thumb}>
           </div>
           <div class="flip-card-back">
               <p class="title">${sm.cheapest}</p>
@@ -50,6 +50,9 @@ Domselectors.glup.addEventListener("click",async function(){
     
     
     `
+   
+    
+   
     
     
     

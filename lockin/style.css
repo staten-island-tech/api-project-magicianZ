@@ -1,7 +1,7 @@
 .flip-card {
   background-color: transparent;
   width: 190px;
-  height: 254px;
+  height:300px;
   perspective: 1000px;
   font-family: sans-serif;
 }
@@ -38,6 +38,7 @@
   backface-visibility: hidden;
   border: 1px solid coral;
   border-radius: 1rem;
+  overflow: hidden;
 }
 
 .flip-card-front {
@@ -58,4 +59,17 @@
   justify-content: space-around;
   flex-wrap: wrap;
   
+}
+
+
+p{
+  font-size: 15px;
+}
+
+h1{
+  font-size: 30px;
+}
+
+img{
+  width: 100%;
 }
