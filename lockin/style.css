@@ -4,6 +4,7 @@
   height:300px;
   perspective: 1000px;
   font-family: sans-serif;
+  margin: 25px;
 }
 
 .title {
@@ -39,6 +40,7 @@
   border: 1px solid coral;
   border-radius: 1rem;
   overflow: hidden;
+  
 }
 
 .flip-card-front {
@@ -58,6 +60,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
   
 }
 
@@ -73,3 +76,4 @@ h1{
 img{
   width: 100%;
 }
+

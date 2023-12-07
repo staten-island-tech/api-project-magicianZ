@@ -5,11 +5,14 @@ import './style.css'
 document.querySelector('#app').innerHTML = `
 
 <button id="gamelookup">Game Lookup </button>
-<div id="container">
-  <form action=""id="forum">
+<button id="deallookup"> Deal Lookup </button>
+<form action=""id="forum">
     <input type="text" id="input">
     <label for="text">What game do you wish to search for?</label>
     </form>
+<div id="container">
+  
+  
 
   
   
@@ -21,9 +24,12 @@ let Domselectors = {
   glup:document.querySelector("#gamelookup"),
   container:document.querySelector("#container"),
   gamelookupform:document.querySelector("#input"),
+  deallookupform:document.querySelector("#input1"),
+  dlup:document.querySelector("#deallookup"),
 }
 
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
+
 
 
 
@@ -66,6 +72,48 @@ Domselectors.glup.addEventListener("click",async function(){
 
 
 })
+
+Domselectors.dlup.addEventListener("click",async function(){
+    try{
+      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=1`;
+      let fetching = await fetch(URLD);
+      let RealUrlD = await fetching.json();
+      let htmlelements = ""
+      RealUrlD.forEach((sm)=>htmlelements+=`
+      <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">${sm.title}</p>
+                <img src=${sm.thumb}>
+                <p class="title"> ${sm.dealRating} Rating </p>
+            </div>
+            <div class="flip-card-back">
+                <p class="title">${sm.normalPrice} Norm Price</p>
+                <p class="title">${sm.salePrice} Sale Price</p>
+                <p class="title">${(((sm.normalPrice - sm.salePrice)/sm.normalPrice) * 100).toFixed(1)}% Off</p>
+            </div>
+        </div>
+    </div>
+      
+      
+      
+      `
+     
+      
+     
+      
+      
+      
+      
+      )
+      Domselectors.container.innerHTML = htmlelements
+     
+  }catch{
+    console.log('catched')
+  }
+  
+  
+  })
 
 
 
