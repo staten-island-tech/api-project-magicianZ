@@ -6,6 +6,7 @@ document.querySelector('#app').innerHTML = `
 
 <button id="gamelookup">Game Lookup </button>
 <button id="deallookup"> Deal Lookup </button>
+<button id="gameshout"> Game Announcements </button>
 <form action=""id="forum">
     <input type="text" id="input">
     <label for="text">What game do you wish to search for?</label>
@@ -14,23 +15,18 @@ document.querySelector('#app').innerHTML = `
   
   
 
-  
-  
-
-  
 `
-
 let Domselectors = {
   glup:document.querySelector("#gamelookup"),
   container:document.querySelector("#container"),
   gamelookupform:document.querySelector("#input"),
   deallookupform:document.querySelector("#input1"),
   dlup:document.querySelector("#deallookup"),
+  gash:document.querySelector('#gameshout'),
 }
 
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
-
-
+const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json`
 
 
 Domselectors.glup.addEventListener("click",async function(){
@@ -57,21 +53,14 @@ Domselectors.glup.addEventListener("click",async function(){
     
     `
    
-    
-   
-    
-    
-    
-    
     )
     Domselectors.container.innerHTML = htmlelements
    
 }catch{
   console.log('catched')
 }
-
-
 })
+
 
 Domselectors.dlup.addEventListener("click",async function(){
     try{
@@ -98,51 +87,45 @@ Domselectors.dlup.addEventListener("click",async function(){
       
       
       `
+      )
+      Domselectors.container.innerHTML = htmlelements
+  }catch{
+    console.log('catched')
+  }
+  })
+
+
+
+
+  Domselectors.gash.addEventListener("click",async function(){
+    try{
+      let URL = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440`;
+      let fetching = await fetch(URL);
+      let RealUrl = await fetching.json();
+      let htmlelements = ""
+      console.log(RealUrl)
+      RealUrl.forEach((sm)=>htmlelements+=`
+      <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p class="title">${sm.external}</p>
+                <img src=${sm.thumb}>
+            </div>
+            <div class="flip-card-back">
+                <p class="title">${sm.cheapest}</p>
+                <p>Leave Me</p>
+            </div>
+        </div>
+    </div>
+      
+      
+      
+      `
      
-      
-     
-      
-      
-      
-      
       )
       Domselectors.container.innerHTML = htmlelements
      
   }catch{
     console.log('catched')
   }
-  
-  
   })
-
-
-
-
-/* 
-async function gettingdata(URL){
-  try{
-    const response = await fetch(URL);
-    const data = await response.json();
-    console.log(data)
-    
-
-  }
-  catch{
-    console.log("catched")
-  }
-}
-
-gettingdata(URL1)
-
-function yay(attunement,et){
-  et.addEventListener("click", function(event){
-       event.preventDefault()
-       let htmlelements = ""
-       let x = deepwoken.filter((something)=>something.attunement===`${attunement}`);
-       x.forEach((sm)=>htmlelements+=`<div id="card"> <p>${sm.name}</p> <img src=${sm.img}><p>${sm.type}</p> <p> ${sm.stars}★</div>`)
-       DOMselectors.container.innerHTML = htmlelements
-       
-   });
-}
-
- */
