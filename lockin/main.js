@@ -6,23 +6,31 @@ document.querySelector('#app').innerHTML = `
 
 <button id="gamelookup">Game Lookup </button>
 <button id="deallookup"> Deal Lookup </button>
-<button id="gameshout"> Game Announcements </button>
+<button id="nextpage"> Next page </button>
 <form action=""id="forum">
     <input type="text" id="input">
     <label for="text">What game do you wish to search for?</label>
+    <input type="text" id="input1">
+    <label for="text">testing phase</label>
     </form>
+    
 <div id="container">
   
   
 
 `
+
+let testing = 0
+
 let Domselectors = {
   glup:document.querySelector("#gamelookup"),
   container:document.querySelector("#container"),
   gamelookupform:document.querySelector("#input"),
   deallookupform:document.querySelector("#input1"),
   dlup:document.querySelector("#deallookup"),
-  gash:document.querySelector('#gameshout'),
+  npage:document.querySelector("#nextpage"),
+  input1:document.querySelector("#input1"),
+  
 }
 
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
@@ -64,7 +72,7 @@ Domselectors.glup.addEventListener("click",async function(){
 
 Domselectors.dlup.addEventListener("click",async function(){
     try{
-      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=1`;
+      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${plswork}`;
       let fetching = await fetch(URLD);
       let RealUrlD = await fetching.json();
       let htmlelements = ""
@@ -95,37 +103,18 @@ Domselectors.dlup.addEventListener("click",async function(){
   })
 
 
+Domselectors.npage.addEventListener("click",function(event){
+  
+  return testing + 1
+  console.log(testing)
+
+  
+  
+
+})
 
 
-  Domselectors.gash.addEventListener("click",async function(){
-    try{
-      let URL = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440`;
-      let fetching = await fetch(URL);
-      let RealUrl = await fetching.json();
-      let htmlelements = ""
-      console.log(RealUrl)
-      RealUrl.forEach((sm)=>htmlelements+=`
-      <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <p class="title">${sm.external}</p>
-                <img src=${sm.thumb}>
-            </div>
-            <div class="flip-card-back">
-                <p class="title">${sm.cheapest}</p>
-                <p>Leave Me</p>
-            </div>
-        </div>
-    </div>
-      
-      
-      
-      `
-     
-      )
-      Domselectors.container.innerHTML = htmlelements
-     
-  }catch{
-    console.log('catched')
-  }
-  })
+
+
+
+  
