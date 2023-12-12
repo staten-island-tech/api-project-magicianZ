@@ -6,7 +6,7 @@ document.querySelector('#app').innerHTML = `
 
 <button id="gamelookup">Game Lookup </button>
 <button id="deallookup"> Deal Lookup </button>
-<button id="nextpage"> Next page </button>
+<button id="npage"> I jjust combusted </button>
 <form action=""id="forum">
     <input type="text" id="input">
     <label for="text">What game do you wish to search for?</label>
@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 
 `
 
-let testing = 0
+
 
 let Domselectors = {
   glup:document.querySelector("#gamelookup"),
@@ -28,13 +28,15 @@ let Domselectors = {
   gamelookupform:document.querySelector("#input"),
   deallookupform:document.querySelector("#input1"),
   dlup:document.querySelector("#deallookup"),
-  npage:document.querySelector("#nextpage"),
+  npage:document.querySelector("#npage"),
   input1:document.querySelector("#input1"),
   
 }
 
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
 const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json`
+const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key= F1872C74F497620E49CB760C36AEA826&steamid=76561197960434622&format=json`
+
 
 
 Domselectors.glup.addEventListener("click",async function(){
@@ -72,7 +74,7 @@ Domselectors.glup.addEventListener("click",async function(){
 
 Domselectors.dlup.addEventListener("click",async function(){
     try{
-      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${plswork}`;
+      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=1`;
       let fetching = await fetch(URLD);
       let RealUrlD = await fetching.json();
       let htmlelements = ""
@@ -103,15 +105,7 @@ Domselectors.dlup.addEventListener("click",async function(){
   })
 
 
-Domselectors.npage.addEventListener("click",function(event){
-  
-  return testing + 1
-  console.log(testing)
 
-  
-  
-
-})
 
 
 
