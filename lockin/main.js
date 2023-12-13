@@ -72,51 +72,95 @@ Domselectors.glup.addEventListener("click",async function(){
 })
 
 
+
+
+
 Domselectors.dlup.addEventListener("click",async function(){
-    try{
-      let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${1 + Domselectors.testing.value} `;
-      let fetching = await fetch(URLD);
-      let RealUrlD = await fetching.json();
-      let htmlelements = ""
-      RealUrlD.forEach((sm)=>htmlelements+=`
-      <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <p class="title">${sm.title}</p>
-                <img src=${sm.thumb}>
-                <p class="title"> ${sm.dealRating} Rating </p>
-            </div>
-            <div class="flip-card-back">
-                <p class="title">${sm.normalPrice} Norm Price</p>
-                <p class="title">${sm.salePrice} Sale Price</p>
-                <p class="title">${(((sm.normalPrice - sm.salePrice)/sm.normalPrice) * 100).toFixed(1)}% Off</p>
-            </div>
-        </div>
-    </div>
-      
-      
-      
-      `
-      )
-      Domselectors.container.innerHTML = htmlelements
-  }catch{
-    console.log('catched')
-  }
-  })
-
-
-
- 
-
-
-
-
-
-Domselectors.npage.addEventListener("click",function myFunction() {
-  count++;
-  Domselectors.testing.innerHTML = count;
-  Domselectors.testing.value = count;
-  console.log(Domselectors.testing.value)
-  
-  
+  try{
+    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=1`;
+    let fetching = await fetch(URLD);
+    let RealUrlD = await fetching.json();
+    let htmlelements = ""
+    RealUrlD.forEach((sm)=>htmlelements+=`
+    <div class="flip-card">
+      <div class="flip-card-inner">
+          <div class="flip-card-front">
+              <p class="title">${sm.title}</p>
+              <img src=${sm.thumb}>
+              <p class="title"> ${sm.dealRating} Rating </p>
+          </div>
+          <div class="flip-card-back">
+              <p class="title">${sm.normalPrice} Norm Price</p>
+              <p class="title">${sm.salePrice} Sale Price</p>
+              <p class="title">${(((sm.normalPrice - sm.salePrice)/sm.normalPrice) * 100).toFixed(1)}% Off</p>
+          </div>
+      </div>
+  </div>
+    
+    
+    
+    `
+    )
+    Domselectors.container.innerHTML = htmlelements
+}catch{
+  console.log('catched')
+}
 })
+
+
+
+
+
+Domselectors.npage.addEventListener("click",async function myFunction() {
+  count++;
+  let pagenumber = count + 1
+  let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32]
+  
+  while (forbidden.includes(pagenumber)){
+    count++
+    pagenumber++
+    if (pagenumber >= 36){//this shit dont fucking work im offf for today
+      let pagenumber = 1
+      console.log(`The while loop pagenumber is ${pagenumber}`)
+      break
+    }
+    if (!forbidden.includes(pagenumber)){
+      break
+    }
+  }
+
+  
+  
+  Domselectors.testing.innerHTML = count + 1;
+  Domselectors.testing.value = count;
+  console.log(`${Domselectors.testing.value} is Count`)
+  console.log(`${pagenumber} is page number`)
+  try{
+    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${pagenumber} `;
+    let fetching = await fetch(URLD);
+    let RealUrlD = await fetching.json();
+    let htmlelements = ""
+    RealUrlD.forEach((sm)=>htmlelements+=`
+    <div class="flip-card">
+      <div class="flip-card-inner">
+          <div class="flip-card-front">
+              <p class="title">${sm.title}</p>
+              <img src=${sm.thumb}>
+              <p class="title"> ${sm.dealRating} Rating </p>
+          </div>
+          <div class="flip-card-back">
+              <p class="title">${sm.normalPrice} Norm Price</p>
+              <p class="title">${sm.salePrice} Sale Price</p>
+              <p class="title">${(((sm.normalPrice - sm.salePrice)/sm.normalPrice) * 100).toFixed(1)}% Off</p>
+          </div>
+      </div>
+  </div>
+    `
+    )
+    Domselectors.container.innerHTML = htmlelements
+}catch{
+  console.log('catched')
+}
+})
+  
+  
