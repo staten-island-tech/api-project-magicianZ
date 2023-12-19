@@ -116,16 +116,18 @@ Domselectors.dlup.addEventListener("click",async function(){
 Domselectors.npage.addEventListener("click",async function myFunction() {
   count++;
   let pagenumber = count + 1
-  let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32]
+  let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32,36,37]
   while (forbidden.includes(pagenumber)){
     count++
     pagenumber++
-    if (pagenumber >= 36){//this shit dont fucking work im offf for today
-      let pagenumber = 1
+    if (pagenumber > 36){//this shit dont fucking work im offf for today
+      pagenumber = 1
+      count = 0
       console.log(`The while loop pagenumber is ${pagenumber}`)
       break
     }
     if (!forbidden.includes(pagenumber)){
+      let nathanchen = true
       break
     }
   }
@@ -159,12 +161,40 @@ Domselectors.npage.addEventListener("click",async function myFunction() {
     `
     )
     Domselectors.container.innerHTML = htmlelements
-}catch{
-  console.log('catched')
-}
-})
+  }catch{
+    console.log('catched')
+  }
+  })
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Domselectors.bpage.addEventListener("click",async function myFunction() {
   count - 1;
   let pagenumber = count - 1
