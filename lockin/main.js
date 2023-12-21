@@ -3,6 +3,9 @@ let count = 0;
 
 
 document.querySelector('#app').innerHTML = `
+<div id="homepage">
+  <p> Home </p>
+</div>
 
 <button id="gamelookup">Game Lookup </button>
 <button id="deallookup"> Deal Lookup </button>
@@ -39,6 +42,14 @@ const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
 const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json`
 const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=F1872C74F497620E49CB760C36AEA826&steamid=76561197960434622&format=json`
 
+async function player(){
+  let URL = `http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=440&format=json`
+  let fetching = await fetch(URL);
+  console.log(fetching)
+  
+  
+}
+player()
 
 
 Domselectors.glup.addEventListener("click",async function(){
