@@ -7,17 +7,32 @@ document.querySelector('#app').innerHTML = `
   <p> Home </p>
 </div>
 
-<button id="gamelookup">Game Lookup </button>
-<button id="deallookup"> Deal Lookup </button>
-<button id="npage"> Next pag</button>
-<button id="bpage"> Back pag </button>
-<p id="testing"></p>
-<form action=""id="forum">
-    <input type="text" id="input">
-    <label for="text">What game do you wish to search for?</label>
-    </form>
+
+
+
+<div id="secondpage">
+  <button id="gamelookup">Game Lookup </button>
+  <form action=""id="forum">
+      <input type="text" id="input">
+      <label for="text">What game do you wish to search for?</label>
+      </form>
+</div>
+
+
+
+
+<div id="thirdpag"> 
+  <div id="divinadiv">
+  </div>
+  <button id="deallookup"> Deal Lookup </button>
+  <button id="npage"> Next pag</button>
+  <button id="bpage"> Back pag </button>
+  <p id="testing"></p>
+
+</div>
+
     
-<div id="container">
+
   
   
 
@@ -27,7 +42,8 @@ document.querySelector('#app').innerHTML = `
 
 let Domselectors = {
   glup:document.querySelector("#gamelookup"),
-  container:document.querySelector("#container"),
+  secondpage:document.querySelector("#secondpage"),
+  thirdpage:document.querySelector("#thirdpag"),
   gamelookupform:document.querySelector("#input"),
   deallookupform:document.querySelector("#input1"),
   dlup:document.querySelector("#deallookup"),
@@ -35,6 +51,7 @@ let Domselectors = {
   bpage:document.querySelector("#bpage"),
   input1:document.querySelector("#input1"),
   testing:document.querySelector("#testing"),
+  division:document.querySelector("#divinadiv"),
   
 }
 Domselectors.testing.value = 0
@@ -42,14 +59,7 @@ const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
 const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json`
 const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=F1872C74F497620E49CB760C36AEA826&steamid=76561197960434622&format=json`
 
-async function player(){
-  let URL = `http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=440&format=json`
-  let fetching = await fetch(URL);
-  console.log(fetching)
-  
-  
-}
-player()
+
 
 
 Domselectors.glup.addEventListener("click",async function(){
@@ -77,7 +87,7 @@ Domselectors.glup.addEventListener("click",async function(){
     `
    
     )
-    Domselectors.container.innerHTML = htmlelements
+    Domselectors.secondpage.innerHTML = htmlelements
    
 }catch{
   console.log('catched')
@@ -114,7 +124,7 @@ Domselectors.dlup.addEventListener("click",async function(){
     
     `
     )
-    Domselectors.container.innerHTML = htmlelements
+    Domselectors.thirdpage.innerHTML += htmlelements
 }catch{
   console.log('catched')
 }
@@ -171,7 +181,7 @@ Domselectors.npage.addEventListener("click",async function myFunction() {
   </div>
     `
     )
-    Domselectors.container.innerHTML = htmlelements
+    Domselectors.division.innerHTML = htmlelements
   }catch{
     console.log('catched')
   }
@@ -251,7 +261,7 @@ Domselectors.bpage.addEventListener("click",async function myFunction() {
   </div>
     `
     )
-    Domselectors.container.innerHTML = htmlelements
+    Domselectors.thirdpage.innerHTML += htmlelements
 }catch{
   console.log('catched')
 }
