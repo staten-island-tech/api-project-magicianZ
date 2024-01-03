@@ -4,18 +4,30 @@ let count = 0;
 
 document.querySelector('#app').innerHTML = `
 <div id="homepage">
+  <div id="divinadiv">
+    </div>
+    <button id="deallookup"> Deal Lookup </button>
+    <button id="npage"> Next pag</button>
+    <button id="bpage"> Back pag </button>
+    <p id="testing"></p>
+
+
+  <button id="gamelookup">Game Lookup </button>
+    <form action=""id="forum">
+        <input type="text" id="input">
+        <label for="text">What game do you wish to search for?</label>
+        </form>
+  
+
   <p> Home </p>
 </div>
 
 
 
 
+
 <div id="secondpage">
-  <button id="gamelookup">Game Lookup </button>
-  <form action=""id="forum">
-      <input type="text" id="input">
-      <label for="text">What game do you wish to search for?</label>
-      </form>
+  
 </div>
 
 
@@ -23,11 +35,7 @@ document.querySelector('#app').innerHTML = `
 
 <div id="thirdpag"> 
   <div id="divinadiv">
-  </div>
-  <button id="deallookup"> Deal Lookup </button>
-  <button id="npage"> Next pag</button>
-  <button id="bpage"> Back pag </button>
-  <p id="testing"></p>
+ 
 
 </div>
 
@@ -52,6 +60,7 @@ let Domselectors = {
   input1:document.querySelector("#input1"),
   testing:document.querySelector("#testing"),
   division:document.querySelector("#divinadiv"),
+  flipcard:document.querySelector("#flip-card")
   
 }
 Domselectors.testing.value = 0
@@ -60,9 +69,14 @@ const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=
 const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=F1872C74F497620E49CB760C36AEA826&steamid=76561197960434622&format=json`
 
 
-
+function clear(){
+  Domselectors.secondpage.innerHTML = ""
+  Domselectors.thirdpage.innerHTML = ""
+  Domselectors.division.innerHTML = ""
+}
 
 Domselectors.glup.addEventListener("click",async function(){
+  clear()
   try{
     let URL = `https://www.cheapshark.com/api/1.0/games?title=${Domselectors.gamelookupform.value}`;
     let fetching = await fetch(URL);
@@ -99,11 +113,13 @@ Domselectors.glup.addEventListener("click",async function(){
 
 
 Domselectors.dlup.addEventListener("click",async function(){
+  clear()
   try{
     let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=1`;
     let fetching = await fetch(URLD);
     let RealUrlD = await fetching.json();
     let htmlelements = ""
+    let izzyzoltan = ""
     RealUrlD.forEach((sm)=>htmlelements+=`
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -124,7 +140,8 @@ Domselectors.dlup.addEventListener("click",async function(){
     
     `
     )
-    Domselectors.thirdpage.innerHTML += htmlelements
+    Domselectors.division.innerHTML += htmlelements
+    Domselectors.flipcard.innerHTML = izzyzoltan
 }catch{
   console.log('catched')
 }
@@ -134,7 +151,8 @@ Domselectors.dlup.addEventListener("click",async function(){
 
 
 
-Domselectors.npage.addEventListener("click",async function myFunction() {
+Domselectors.npage.addEventListener("click",async function myFunction(){
+  clear()
   count++;
   let pagenumber = count + 1
   let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32,36,37]
@@ -148,7 +166,6 @@ Domselectors.npage.addEventListener("click",async function myFunction() {
       break
     }
     if (!forbidden.includes(pagenumber)){
-      let nathanchen = true
       break
     }
   }
@@ -217,6 +234,7 @@ Domselectors.npage.addEventListener("click",async function myFunction() {
 
 
 Domselectors.bpage.addEventListener("click",async function myFunction() {
+  clear()
   count - 1;
   let pagenumber = count - 1
   let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32]
