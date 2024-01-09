@@ -4,10 +4,9 @@ let count = 0;
 
 document.querySelector('#app').innerHTML = `
 <div id="homepage">
-  <div id="divinadiv">
-    </div>
+  
     <button id="deallookup"> Deal Lookup </button>
-    <button id="npage"> Next pag</button>
+    
     <button id="bpage"> Back pag </button>
     <p id="testing"></p>
 
@@ -20,21 +19,26 @@ document.querySelector('#app').innerHTML = `
   
 
   <p> Home </p>
+  <div id="divinadiv">
+    </div>
+  <div id="secondpage">
+    <button id="secondpagebutton"> Looking up a game </div>
+    
+  </div>
 </div>
 
 
 
 
 
-<div id="secondpage">
-  
-</div>
+
 
 
 
 
 <div id="thirdpag"> 
   <div id="divinadiv">
+    
  
 
 </div>
@@ -60,7 +64,8 @@ let Domselectors = {
   input1:document.querySelector("#input1"),
   testing:document.querySelector("#testing"),
   division:document.querySelector("#divinadiv"),
-  flipcard:document.querySelector("#flip-card")
+  flipcard:document.querySelector("#flip-card"),
+  secondpagebutton:document.querySelector("#secondpagebutton")
   
 }
 Domselectors.testing.value = 0
@@ -70,7 +75,6 @@ const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGa
 
 
 function clear(){
-  Domselectors.secondpage.innerHTML = ""
   Domselectors.thirdpage.innerHTML = ""
   Domselectors.division.innerHTML = ""
 }
@@ -119,7 +123,7 @@ Domselectors.dlup.addEventListener("click",async function(){
     let fetching = await fetch(URLD);
     let RealUrlD = await fetching.json();
     let htmlelements = ""
-    let izzyzoltan = ""
+    
     RealUrlD.forEach((sm)=>htmlelements+=`
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -135,13 +139,14 @@ Domselectors.dlup.addEventListener("click",async function(){
           </div>
       </div>
   </div>
+  
     
     
     
     `
     )
     Domselectors.division.innerHTML += htmlelements
-    Domselectors.flipcard.innerHTML = izzyzoltan
+    Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button>`
 }catch{
   console.log('catched')
 }
@@ -151,7 +156,7 @@ Domselectors.dlup.addEventListener("click",async function(){
 
 
 
-Domselectors.npage.addEventListener("click",async function myFunction(){
+Domselectors.thirdpage.addEventListener("click",async function myFunction(){
   clear()
   count++;
   let pagenumber = count + 1
@@ -199,6 +204,7 @@ Domselectors.npage.addEventListener("click",async function myFunction(){
     `
     )
     Domselectors.division.innerHTML = htmlelements
+    Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button>`
   }catch{
     console.log('catched')
   }
@@ -285,3 +291,15 @@ Domselectors.bpage.addEventListener("click",async function myFunction() {
 }
 })
   
+
+
+Domselectors.secondpage.addEventListener("click",async function myFunction() {
+  let htmlelements = `<button id="taketoglup"> take to glup </button>`
+  Domselectors.secondpage.innerHTML = htmlelements
+
+
+
+
+
+
+})

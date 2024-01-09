@@ -56,13 +56,15 @@
   transform: rotateY(180deg);
 }
 
-#secondpage, #thirdpag, #divinadiv {
+ #thirdpag, #divinadiv {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
   
 }
+
+
 
 
 p{
