@@ -8,7 +8,10 @@ document.querySelector('#app').innerHTML = `
     <button id="deallookup"> Deal Lookup </button>
     
     <button id="bpage"> Back pag </button>
-    <p id="testing"></p>
+    <div id="nathan">
+      <button id="taketoglup"> take to glup </button>
+    </div>
+    
 
 
   <button id="gamelookup">Game Lookup </button>
@@ -21,23 +24,15 @@ document.querySelector('#app').innerHTML = `
   <p> Home </p>
   <div id="divinadiv">
     </div>
-  <div id="secondpage">
-    <button id="secondpagebutton"> Looking up a game </div>
+  
+</div>
+<div id="secondpage">
+    
     
   </div>
-</div>
-
-
-
-
-
-
-
-
-
 
 <div id="thirdpag"> 
-  <div id="divinadiv">
+  </div>
     
  
 
@@ -65,16 +60,18 @@ let Domselectors = {
   testing:document.querySelector("#testing"),
   division:document.querySelector("#divinadiv"),
   flipcard:document.querySelector("#flip-card"),
-  secondpagebutton:document.querySelector("#secondpagebutton")
+  secondpagebutton:document.querySelector("#secondpagebutton"),
+  nathan:document.querySelector("#nathan"),
   
 }
-Domselectors.testing.value = 0
+
 const URL1 = `https://www.cheapshark.com/api/1.0/games?title=Lethal`;
 const URL2 = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json`
 const PlayerOwnedGames = ` http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=F1872C74F497620E49CB760C36AEA826&steamid=76561197960434622&format=json`
 
 
 function clear(){
+  Domselectors.secondpage.innerHTML = ""
   Domselectors.thirdpage.innerHTML = ""
   Domselectors.division.innerHTML = ""
 }
@@ -177,9 +174,6 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
 
   
   
-  Domselectors.testing.innerHTML = count + 1;
-  Domselectors.testing.value = count;
-  console.log(`${Domselectors.testing.value} is Count`)
   console.log(`${pagenumber} is page number`)
   try{
     let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${pagenumber} `;
@@ -294,8 +288,12 @@ Domselectors.bpage.addEventListener("click",async function myFunction() {
 
 
 Domselectors.secondpage.addEventListener("click",async function myFunction() {
-  let htmlelements = `<button id="taketoglup"> take to glup </button>`
-  Domselectors.secondpage.innerHTML = htmlelements
+  Domselectors.secondpage.innerHTML += `
+  <button id="gamelookup">Game Lookup </button>
+  <form action=""id="forum">
+      <input type="text" id="input">
+      <label for="text">What game do you wish to search for?</label>
+      </form>`
 
 
 
