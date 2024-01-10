@@ -1,5 +1,8 @@
 import './style.css'
 let count = 0;
+let pagenumber = 0
+let pagenumbers = [1]
+let gabriel = 0
 
 
 document.querySelector('#app').innerHTML = `
@@ -8,7 +11,6 @@ document.querySelector('#app').innerHTML = `
     <button id="deallookup"> Deal Lookup </button>
     
     <div id="nathan">
-      <button id="bpage"> Back pag </button>
       
     </div>
     
@@ -32,6 +34,9 @@ document.querySelector('#app').innerHTML = `
   </div>
 
 <div id="thirdpag"> 
+  </div>
+<div id="gabrielliberov">
+
   </div>
     
  
@@ -62,6 +67,7 @@ let Domselectors = {
   flipcard:document.querySelector("#flip-card"),
   secondpagebutton:document.querySelector("#secondpagebutton"),
   nathan:document.querySelector("#nathan"),
+  liberator:document.querySelector("#gabrielliberov")
   
 }
 
@@ -74,6 +80,7 @@ function clear(){
   Domselectors.secondpage.innerHTML = ""
   Domselectors.thirdpage.innerHTML = ""
   Domselectors.division.innerHTML = ""
+  Domselectors.liberator.innerHTML = ""
 }
 Domselectors.glup.addEventListener("click",async function(){
   clear()
@@ -151,7 +158,8 @@ Domselectors.dlup.addEventListener("click",async function(){
 Domselectors.thirdpage.addEventListener("click",async function myFunction(){
   clear()
   count++;
-  let pagenumber = count + 1
+  pagenumber = count + 1
+  
   let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32,36,37]
   while (forbidden.includes(pagenumber)){
     count++
@@ -166,7 +174,9 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
       break
     }
   }
-  console.log(`${pagenumber} is page number`)
+  pagenumbers.push(pagenumber)
+  console.log(`${pagenumbers} this is pagenumbers`)
+ 
   try{
     let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${pagenumber} `;
     let fetching = await fetch(URLD);
@@ -191,7 +201,7 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
     )
     Domselectors.division.innerHTML = htmlelements
     Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button>`
-    Domselectors.thirdpage.innerHTML+= ` <button id="bpage"> Back pag </button>`
+    Domselectors.liberator.innerHTML+= ` <button id="bpage"> Back pag </button>`
 
   }catch{
     console.log('catched')
@@ -228,9 +238,26 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
 
 
 
-Domselectors.bpage.addEventListener("click",async function myfunction() {
+Domselectors.liberator.addEventListener("click",async function myfunction() {
+  clear()
+  for (let i=0; i<pagenumbers.length; i++){
+    gabriel = pagenumbers[i-1]
+    pagenumber = pagenumbers[i-1]
+    count = pagenumbers[i-1] - 1
+    
+  }
+  
+  if (pagenumbers[pagenumber.length - 1] === 2){
+    gabriel = 2
+  }
+  console.log(`${gabriel} dis is gabriel`)
+  console.log(`${pagenumbers.length} dis length of pageumbers`)
+  console.log(`${pagenumber} dis is page number`)
+
+
+
   try{
-    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${document.querySelector(".pagenumber").getAttribute[id]} `;
+    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${gabriel} `;
     let fetching = await fetch(URLD);
     let RealUrlD = await fetching.json();
     let htmlelements = ""
@@ -252,11 +279,12 @@ Domselectors.bpage.addEventListener("click",async function myfunction() {
     `
     )
     Domselectors.division.innerHTML = htmlelements
-    Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button> <button id="bpage"> Back pag </button> `
-    console.log(document.querySelector(".pagenumber").getAttribute[id])
+    Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button> `
+    Domselectors.liberator.innerHTML+= ` <button id="bpage"> Back pag </button>`
+    console.log(`${document.querySelector(".pagenumber").getAttribute[id]} back pag one`)
     
   }catch{
-    console.log(catched )
+    console.log("catched in liberator")
   }
   
 
