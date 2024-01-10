@@ -7,9 +7,9 @@ document.querySelector('#app').innerHTML = `
   
     <button id="deallookup"> Deal Lookup </button>
     
-    <button id="bpage"> Back pag </button>
     <div id="nathan">
-      <button id="taketoglup"> take to glup </button>
+      <button id="bpage"> Back pag </button>
+      
     </div>
     
 
@@ -75,7 +75,6 @@ function clear(){
   Domselectors.thirdpage.innerHTML = ""
   Domselectors.division.innerHTML = ""
 }
-
 Domselectors.glup.addEventListener("click",async function(){
   clear()
   try{
@@ -108,8 +107,6 @@ Domselectors.glup.addEventListener("click",async function(){
   console.log('catched')
 }
 })
-
-
 
 
 
@@ -151,8 +148,6 @@ Domselectors.dlup.addEventListener("click",async function(){
 
 
 
-
-
 Domselectors.thirdpage.addEventListener("click",async function myFunction(){
   clear()
   count++;
@@ -161,7 +156,7 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
   while (forbidden.includes(pagenumber)){
     count++
     pagenumber++
-    if (pagenumber > 36){//this shit dont fucking work im offf for today
+    if (pagenumber > 36){
       pagenumber = 1
       count = 0
       console.log(`The while loop pagenumber is ${pagenumber}`)
@@ -171,9 +166,6 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
       break
     }
   }
-
-  
-  
   console.log(`${pagenumber} is page number`)
   try{
     let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${pagenumber} `;
@@ -199,66 +191,46 @@ Domselectors.thirdpage.addEventListener("click",async function myFunction(){
     )
     Domselectors.division.innerHTML = htmlelements
     Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button>`
+    Domselectors.thirdpage.innerHTML+= ` <button id="bpage"> Back pag </button>`
+
   }catch{
     console.log('catched')
   }
   })
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Domselectors.bpage.addEventListener("click",async function myFunction() {
-  clear()
-  count - 1;
-  let pagenumber = count - 1
-  let forbidden = [4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,22,26,32]
-  while (forbidden.includes(pagenumber)){
-    count - 1
-    pagenumber - 1
-    if (pagenumber >= 36){//this shit dont fucking work im offf for today
-      let pagenumber = 1
-      console.log(`The while loop pagenumber is ${pagenumber}`)
-      break
-    }
-    if (!forbidden.includes(pagenumber)){
-      break
-    }
-  }
 
   
   
-  Domselectors.testing.innerHTML = count + 1;
-  Domselectors.testing.value = count;
-  console.log(`${Domselectors.testing.value} is Count`)
-  console.log(`${pagenumber} is page number`)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Domselectors.bpage.addEventListener("click",async function myfunction() {
   try{
-    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${pagenumber} `;
+    let URLD = `https://www.cheapshark.com/api/1.0/deals?storeID=${document.querySelector(".pagenumber").getAttribute[id]} `;
     let fetching = await fetch(URLD);
     let RealUrlD = await fetching.json();
     let htmlelements = ""
@@ -279,10 +251,17 @@ Domselectors.bpage.addEventListener("click",async function myFunction() {
   </div>
     `
     )
-    Domselectors.thirdpage.innerHTML += htmlelements
-}catch{
-  console.log('catched')
-}
+    Domselectors.division.innerHTML = htmlelements
+    Domselectors.thirdpage.innerHTML += `<button id="npage"> Next pag</button> <button id="bpage"> Back pag </button> `
+    console.log(document.querySelector(".pagenumber").getAttribute[id])
+    
+  }catch{
+    console.log(catched )
+  }
+  
+
+
+  
 })
   
 
